@@ -1,12 +1,12 @@
 package koyo.dev.sabackend.services;
 
 
-import ch.qos.logback.core.net.server.Client;
 import koyo.dev.sabackend.entites.User;
 import koyo.dev.sabackend.repository.UserRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UserService {
@@ -30,5 +30,13 @@ public class UserService {
 
     public List<User> search(){
          return  this.userRepository.findAll();
+    }
+
+    public User SearchUser(int id){
+        Optional <User> optionalUser = this.userRepository.findById(id);
+        if(optionalUser.isPresent()){
+            return  optionalUser.get();
+        }
+        return null;
     }
 }
