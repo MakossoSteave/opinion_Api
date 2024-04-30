@@ -39,4 +39,12 @@ public class UserService {
         }
         return null;
     }
+
+    public User creatOrRead (User userToCreate){
+        User userbdd =  this.userRepository.findByEmail(userToCreate.getEmail());
+        if(userbdd == null){
+            userbdd = this.userRepository.save(userToCreate);
+        }
+        return  userbdd;
+    }
 }
